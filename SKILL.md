@@ -34,7 +34,7 @@ description: 将剧本、脚本、剧情大纲、分场文本转换为完整影�
 
 ## 阶段 2：输出文字分镜脚本
 
-按 `references/storyboard-format.md` 的格式输出。头部四行 + 逐镜七字段：
+先判断剧本情节是否命中 `references/narrative-patterns.md` 中的叙事模式：命中则按该模式的结构锚点组织镜头因果链与镜头语言（锚点为必守约束）；未命中按常规分镜处理。按 `references/storyboard-format.md` 的格式输出。头部四行 + 逐镜七字段：
 
 ```text
 场次：1-1
@@ -93,7 +93,7 @@ description: 将剧本、脚本、剧情大纲、分场文本转换为完整影�
 - 场次或镜头组超过上限时，拆分为多个连续单元并标注单元序号。
 - 单元内镜头时长合计必须 ≤ 上限；超出时重新分配各镜时长或切分镜头。
 
-然后把每个单元的分镜镜头转换为模型原生视频提示词，语法遵循 `references/prompt-grammar.md`，骨架遵循 `references/template.md` 阶段5：
+然后把每个单元的分镜镜头转换为模型原生视频提示词，语法遵循 `references/prompt-grammar.md`，骨架遵循 `references/template.md` 阶段5；叙事结构命中时可查 `references/narrative-patterns.md` 选取匹配模式组织镜头因果链：
 
 - 每个分镜镜头对应一个 `镜头N` 块：构图、主体动作、空间变化、主相机、必要声音。
 - 台词用 `{…}`、音效用 `<…>`、音乐用 `（…）`、可见文字用 `【…】`。
@@ -126,6 +126,7 @@ description: 将剧本、脚本、剧情大纲、分场文本转换为完整影�
 
 - `references/script-parsing.md`：剧本解析清单（短剧格式要素、角色、场景、事件链、台词、声音、镜头）。
 - `references/storyboard-format.md`：文字分镜脚本字段规范与头部格式。
+- `references/narrative-patterns.md`：25 个高频叙事/镜头模式库（舞台表演/揭示/证明/连续升级/材质尺度/场景分支），阶段 2 与阶段 5 命中情节时按锚点组织镜头因果链。
 - `references/prompt-grammar.md`：视频提示词语法（素材编号、主体绑定、四套括号、镜头规则、禁项）。
 - `references/template.md`：阶段 2–5 输出模板与审计清单。
 - `references/examples.md`：完整流水线示例。
